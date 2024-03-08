@@ -1,0 +1,145 @@
+package com.herokuapp.theinternet;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class LoginTests {
+
+	private WebDriver driver;
+
+	@Parameters({ "browser"})
+	@BeforeMethod(alwaysRun = true)
+	private void setup(String browser) {
+		// Create Driver
+		
+		switch (browser) {
+		case "chrome":
+			System.setProperty("webdriver.chrome.driver","C:/Users/ismai/eclipse-workspace/learningspace/selenium-for-beginners/src/main/resources/chromedriver.exe");
+
+			driver = new ChromeDriver();
+			System.out.println("Driver created");
+			sleep(1);
+			
+		case "firefox":
+			System.setProperty("webdriver.gecko.driver","C:/Users/ismai/eclipse-workspace/learningspace/selenium-for-beginners/src/main/resources/geckodriver.exe");
+
+			driver = new ChromeDriver();
+			System.out.println("Driver created");
+			sleep(1);
+			
+		default:
+			break;
+			
+		}
+		
+		
+
+		driver.manage().window().maximize();
+		sleep(1);
+	}
+
+	@AfterMethod(alwaysRun = true)
+	private void tearDown() {
+		driver.quit();
+		System.out.println("Test Finised");
+	}
+
+	@Test(priority = 1, groups = { "positiveTests", "smokeTest" })
+	public void positiveLoginTest() {
+		System.out.println("Test Started");
+
+//		Open test page
+
+		String url = "https://the-internet.herokuapp.com/login";
+		driver.get(url);
+		sleep(1);
+
+//		enter Username
+
+		WebElement username = driver.findElement(By.id("username"));
+		username.sendKeys("tomsmith");
+
+//		enter Password
+		WebElement passwordElement = driver.findElement(By.name("password"));
+		passwordElement.sendKeys("SuperSecretPassword!");
+
+//		click login button
+
+		WebElement loginbutton = driver.findElement(By.xpath("//button[@type='submit']"));
+		loginbutton.click();
+
+//		
+//		Verification:
+//			new url
+		String expectedUrl = "https://the-internet.herokuapp.com/secure";
+		String actualUrl = driver.getCurrentUrl();
+		System.out.println(actualUrl);
+		Assert.assertEquals(actualUrl, expectedUrl, "Actual is not same as expected");
+
+//		successfull message
+		WebElement successmsg = driver.findElement(By.cssSelector("#flash"));
+		String expectedmsg = "You logged into a secure area!";
+		String Actualmsg = successmsg.getText();
+
+		// Assert.assertEquals(Actualmsg, expectedmsg, "ActualMsg is not same as
+		// expected");
+		Assert.assertTrue(Actualmsg.contains(expectedmsg),
+				"ActualMsg is doesnot contain expected msg.\n Actual Message:" + Actualmsg + "\n Expected Msg:"
+						+ expectedmsg);
+
+		// logout button is visible
+		WebElement logoutbutton = driver.findElement(By.xpath("//a[@class='button secondary radius']"));
+
+		Assert.assertTrue(logoutbutton.isDisplayed(), "logoutbutton is not displayed");
+
+		// logoutbutton.click();
+
+	}
+
+	@Parameters({ "username", "password", "expectedmsg" })
+	@Test(priority = 2, groups = { "negativeTests", "smokeTest" })
+	public void negativeLoginTest(String username, String password, String expectedErrormsg) {
+
+		System.out.println(" Starting negativeLoginTest with " + username + "and" + password);
+		
+		driver.get("https://the-internet.herokuapp.com/login");
+		sleep(1);
+
+		WebElement usernameElement = driver.findElement(By.id("username"));
+		usernameElement.sendKeys(username);
+
+		WebElement passwordElement = driver.findElement(By.xpath("//input[@id='password']"));
+		passwordElement.sendKeys(password);
+		sleep(1);
+
+		WebElement loginbutton = driver.findElement(By.xpath("//button[@type='submit']"));
+		loginbutton.click();
+		sleep(1);
+
+		WebElement Invaliddmsg = driver.findElement(By.id("flash-messages"));
+
+		// String expectedmsg = "Your username is invalid!"; This we are getting from
+		// XML file
+		String actualmsg = Invaliddmsg.getText();
+//		System.out.println(actualmsg);
+		Assert.assertTrue(actualmsg.contains(expectedErrormsg), expectedErrormsg);
+		sleep(1);
+
+	}
+
+	private void sleep(int seconds) {
+		try {
+			Thread.sleep(seconds * 1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

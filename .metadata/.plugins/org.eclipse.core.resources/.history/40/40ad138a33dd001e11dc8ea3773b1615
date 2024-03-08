@@ -1,0 +1,92 @@
+package com.herokuapp.theinternet;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class NegativeTests {
+	
+	@Parameters({ "username","password","expectedmsg" })
+	@Test(priority = 1,groups = { "negativeTests", "smokeTest" })
+	public void negativeLoginTest(String username,String password, String expectedErrormsg ) {
+		
+		System.out.println("Starting negativeLoginTest with" + username + "and" + password + )		;
+		System.setProperty("webdriver.chrome.driver",
+				"C:/Users/ismai/eclipse-workspace/learningspace/selenium-for-beginners/src/main/resources/chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://the-internet.herokuapp.com/login");
+		sleep(1);
+
+		WebElement usernameElement = driver.findElement(By.id("username"));
+		usernameElement.sendKeys(username);
+
+		WebElement passwordElement = driver.findElement(By.xpath("//input[@id='password']"));
+		passwordElement.sendKeys(password);
+		sleep(1);
+
+		WebElement loginbutton = driver.findElement(By.xpath("//button[@type='submit']"));
+		loginbutton.click();
+		sleep(1);
+
+		WebElement Invaliddmsg = driver.findElement(By.id("flash-messages"));
+
+		//String expectedmsg = "Your username is invalid!"; This we are getting from XML file
+		String actualmsg = Invaliddmsg.getText();
+//		System.out.println(actualmsg);
+		Assert.assertTrue(actualmsg.contains(expectedErrormsg), expectedErrormsg);
+		sleep(1);
+
+		driver.quit();
+
+	}
+	
+//	@Test(priority = 2,  groups = { "negativeTests" })
+//	public void InvalidPasswordTest() {
+//
+//		System.setProperty("webdriver.chrome.driver",
+//				"C:/Users/ismai/eclipse-workspace/learningspace/selenium-for-beginners/src/main/resources/chromedriver.exe");
+//
+//		WebDriver driver = new ChromeDriver();
+//
+//		driver.get("https://the-internet.herokuapp.com/login");
+//		sleep(1);
+//
+//		WebElement username = driver.findElement(By.id("username"));
+//		username.sendKeys("tomsmith");
+//
+//		WebElement password = driver.findElement(By.xpath("//input[@id='password']"));
+//		password.sendKeys("Invalid!");
+//		sleep(1);
+//
+//		WebElement loginbutton = driver.findElement(By.xpath("//button[@type='submit']"));
+//		loginbutton.click();
+//		sleep(1);
+//
+//		WebElement Invaliddmsg = driver.findElement(By.id("flash-messages"));
+//
+//		String expectedmsg = "Your password is invalid!";
+//		String actualmsg = Invaliddmsg.getText();
+//		System.out.println(actualmsg);
+//		Assert.assertTrue(actualmsg.contains(expectedmsg), expectedmsg);
+//		sleep(1);
+//
+//		driver.quit();
+//
+//	}
+
+	private void sleep(int seconds) {
+		try {
+			Thread.sleep(seconds * 1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

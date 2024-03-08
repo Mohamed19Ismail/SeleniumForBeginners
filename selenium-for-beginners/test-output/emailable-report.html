@@ -8,12 +8,18 @@
 <body>
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
-<tr><th colspan="7">NegativeTests</th></tr>
-<tr><td><a href="#t0">NegativeTests</a></td><td class="num">2</td><td class="num">0</td><td class="num">0</td><td class="num">28,181</td><td></td><td></td></tr>
+<tr><th colspan="7">LoginTests</th></tr>
+<tr><td><a href="#t0">PositiveTests</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">14,904</td><td>positiveTests</td><td></td></tr>
+<tr class="stripe"><td><a href="#t1">NegativeUsernameTests</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">15,022</td><td></td><td></td></tr>
+<tr><td><a href="#t2">NegativePasswordTests</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">44,315</td><td></td><td></td></tr>
+<tr><th>Total</th><th class="num">3</th><th class="num">0</th><th class="num">0</th><th class="num">74,241</th><th colspan="2"></th></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">NegativeTests</th></tr></tbody><tbody id="t0"><tr><th colspan="4">NegativeTests &#8212; passed</th></tr><tr class="passedeven"><td rowspan="2">com.herokuapp.theinternet.NegativeTests</td><td><a href="#m0">InvalidPasswordTest</a></td><td rowspan="1">1709832907067</td><td rowspan="1">14315</td></tr><tr class="passedeven"><td><a href="#m1">InvalidUserNameTest</a></td><td rowspan="1">1709832921385</td><td rowspan="1">13845</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">LoginTests</th></tr></tbody><tbody id="t0"><tr><th colspan="4">PositiveTests &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">com.herokuapp.theinternet.LoginTests</td><td><a href="#m0">positiveLoginTest</a></td><td rowspan="1">1709917406561</td><td rowspan="1">10024</td></tr></tbody>
+<tbody id="t1"><tr><th colspan="4">NegativeUsernameTests &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">com.herokuapp.theinternet.LoginTests</td><td><a href="#m1">negativeLoginTest</a></td><td rowspan="1">1709917421947</td><td rowspan="1">9641</td></tr></tbody>
+<tbody id="t2"><tr><th colspan="4">NegativePasswordTests &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">com.herokuapp.theinternet.LoginTests</td><td><a href="#m2">negativeLoginTest</a></td><td rowspan="1">1709917458628</td><td rowspan="1">14725</td></tr></tbody>
 </table>
-<h2>NegativeTests</h2><h3 id="m0">com.herokuapp.theinternet.NegativeTests#InvalidPasswordTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">com.herokuapp.theinternet.NegativeTests#InvalidUserNameTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>PositiveTests</h2><h3 id="m0">com.herokuapp.theinternet.LoginTests#positiveLoginTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>NegativeUsernameTests</h2><h3 id="m1">com.herokuapp.theinternet.LoginTests#negativeLoginTest</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th><th>Parameter #3</th><th>Parameter #4</th></tr><tr class="param stripe"><td>chrome</td><td>Invalid</td><td>SuperSecretPassword!</td><td>Your username is invalid!</td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>NegativePasswordTests</h2><h3 id="m2">com.herokuapp.theinternet.LoginTests#negativeLoginTest</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th><th>Parameter #3</th><th>Parameter #4</th></tr><tr class="param stripe"><td>firefox</td><td>tomsmith</td><td>Invalid!</td><td>Your password is invalid!</td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>
