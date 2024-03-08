@@ -1,0 +1,27 @@
+INDEX VERSION 1.134+C:\Users\ismai\eclipse-workspace\learningspace\.metadata\.plugins\org.eclipse.jdt.core
+949337088.index
+1148769026.index
+3193548800.index
+1873088422.index
+3049597979.index
+319582548.index
+589727812.index
+816754910.index
+562591064.index
+3796129964.index
+1865797976.index
+2950046937.index
+708211317.index
+1779607316.index
+2690561545.index
+4167952799.index
+2915109543.index
+459390516.index
+1517123768.index
+1459356212.index
+1583193658.index
+3139025083.index
+1287477466.index
+189582504.index
+2288558046.index
+1381319862.index

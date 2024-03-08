@@ -1,0 +1,27 @@
+package com.herokuapp.theinternet;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class NegativeTests {
+	
+	public void InvalidUserName(){
+		
+		System.setProperty("webdriver.chrome.driver", "C:/Users/ismai/eclipse-workspace/learningspace/selenium-for-beginners/src/main/resources/chromedriver.exe");
+		
+		
+		// Driver object
+		
+		WebDriver driver = new ChromeDriver();
+		
+		//Open testpage
+		
+		
+		
+		//enter invalid username
+		//enter valid password
+		//click on login button
+		//verify error message
+	}
+
+}

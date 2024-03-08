@@ -1,0 +1,38 @@
+package com.herokuapp.theinternet;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class NegativeTests {
+	
+	public void InvalidUserName(){
+		
+		System.setProperty("webdriver.chrome.driver", "C:/Users/ismai/eclipse-workspace/learningspace/selenium-for-beginners/src/main/resources/chromedriver.exe");
+		
+		
+		// Driver object
+		
+		WebDriver driver = new ChromeDriver();
+		
+		//Open testpage
+		
+		driver.get("https://the-internet.herokuapp.com/login");
+		
+		//enter invalid username
+		
+		WebElement username = driver.findElement(By.id("username"));
+		username.sendKeys("Invalid");
+		
+		//enter valid password
+		WebElement password = driver.findElement(By.xpath("//input[@id='password']"));
+		password.sendKeys("SuperSecretPassword!");
+		
+		//click on login button
+		driver.findElement(By.cssSelector("#button"));
+		
+		//verify error message
+	}
+
+}
